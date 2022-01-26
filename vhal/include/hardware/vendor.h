@@ -66,6 +66,7 @@ typedef enum {
   MAP_ID,
   MAX_POW_ID,
   OPP_ID,
+  RF_PATH_LOSS_ID,
   END_OF_PROFILE_LIST
 } profile_t;
 
@@ -82,6 +83,8 @@ typedef enum {
  EDR_MAX_POW_SUPPORT,
  BLE_MAX_POW_SUPPORT,
  OPP_0100_SUPPORT,
+ RF_TX_PATH_COMPENSATION_VALUE,
+ RF_RX_PATH_COMPENSATION_VALUE,
  END_OF_FEATURE_LIST
  } profile_info_t;
 
@@ -170,6 +173,7 @@ typedef struct {
 typedef int (*property_set_callout)(const char* key, const char* value);
 typedef int (*property_get_callout)(const char* key, char* value, const char* default_value);
 typedef int32_t (*property_get_int32_callout)(const char* key, int32_t default_value);
+typedef bool (*property_get_bool_callout)(const char* key, bool default_value);
 
 typedef struct {
   size_t size;
@@ -177,6 +181,7 @@ typedef struct {
   property_set_callout bt_set_property;
   property_get_callout bt_get_property;
   property_get_int32_callout bt_get_property_int32;
+  property_get_bool_callout bt_get_property_bool;
 } bt_property_callout_t;
 
 /** Represents the standard BT-Vendor interface.
